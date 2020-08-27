@@ -29,8 +29,8 @@ Desktop.ini
 .mailmap
 *.app
 *.dSYM
-ofxOpenDHT_example/bin/.tmp
+example_ofxOpenDHT/bin/.tmp
 bin/.tmp
 obj/
-**/build-ofxOpenDHT_example-Desktop-Debug
-**/build-ofxOpenDHT_example-Desktop-Release
+**/build-example_ofxOpenDHT-Desktop-Debug
+**/build-example_ofxOpenDHT-Desktop-Release

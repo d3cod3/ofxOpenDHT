@@ -31,6 +31,37 @@
 
 #include "ofMain.h"
 
+#include "opendht_includes.h"
+
+struct dht_params {
+    bool generate_identity {false};
+    bool daemonize {false};
+    bool service {false};
+    bool peer_discovery {false};
+    bool log {false};
+    bool syslog {false};
+    std::string logfile {};
+    std::string bootstrap {};
+    dht::NetId network {0};
+    in_port_t port {0};
+    in_port_t proxyserver {0};
+    in_port_t proxyserverssl {0};
+    std::string proxyclient {};
+    std::string pushserver {};
+    std::string devicekey {};
+    std::string persist_path {};
+    dht::crypto::Identity id {};
+    dht::crypto::Identity proxy_id {};
+    std::string privkey_pwd {};
+    std::string proxy_privkey_pwd {};
+    std::string save_identity {};
+    bool no_rate_limit {false};
+    bool public_stable {false};
+};
+
+static std::mt19937_64 rd {dht::crypto::random_device{}()};
+static std::uniform_int_distribution<dht::Value::Id> rand_id;
+
 class ofxOpenDHT {
 
 public:
@@ -39,10 +70,11 @@ public:
     ~ofxOpenDHT();
 
 
-
+    dht::DhtRunner  dhtNode;
+    dht_params      nodeParams;
 
 private:
 
-    
+
 
 };
