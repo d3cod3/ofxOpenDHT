@@ -18,7 +18,7 @@ meta:
 	ADDON_NAME = ofxOpenDHT
 	ADDON_DESCRIPTION = Addon for wrapping and include the openDHT (https://github.com/savoirfairelinux/opendht) library, a C++14 distributed hash table implementation
 	ADDON_AUTHOR = Emanuele Mazza aka n3m3da aka d3cod3
-	ADDON_TAGS = "dht" "p2p" "networking" "serverless" "distributed"
+	ADDON_TAGS = "dht" "p2p" "serverless" "distributed network"
 	ADDON_URL = https://github.com/d3cod3/ofxOpenDHT
 
 common:
@@ -29,7 +29,7 @@ common:
 	# include search paths, this will be usually parsed from the file system
 	# but if the addon or addon libraries need special search paths they can be
 	# specified here separated by spaces or one per line using +=
-	#ADDON_INCLUDES +=
+	#ADDON_INCLUDES =
 
 	# any special flag that should be passed to the compiler when using this
 	# addon
@@ -61,13 +61,10 @@ common:
 	# ADDON_LIBS_EXCLUDE =
 
 linux64:
-	ADDON_LDFLAGS += -lopendht
+	#ADDON_LDFLAGS += -lopendht
 
 linux:
-	ADDON_LDFLAGS += -lopendht
-
-msys2:
-	ADDON_LDFLAGS += -lopendht
+	#ADDON_LDFLAGS += -lopendht
 
 osx:
-	ADDON_LDFLAGS += -lopendht
+	#ADDON_LDFLAGS += -lopendht
