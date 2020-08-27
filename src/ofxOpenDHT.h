@@ -69,12 +69,15 @@ public:
     ofxOpenDHT();
     ~ofxOpenDHT();
 
+    void    setupDHTNode(std::string network="ofxOpenDHT",size_t port=4222,std::string bootstrapNode="bootstrap.jami.net");
 
     dht::DhtRunner  dhtNode;
     dht_params      nodeParams;
 
 private:
 
-
+    std::pair<dht::DhtRunner::Config, dht::DhtRunner::Context> getDhtConfig(dht_params& params);
+    void print_node_info(const dht::NodeInfo& info);
+    std::string printTime(const std::time_t& now);
 
 };
