@@ -1,0 +1,36 @@
+# QtCreator
+*.qbs.user
+*.pro.user
+*.pri
+
+# Linux
+*~
+# KDE
+.directory
+.AppleDouble
+
+# OSX
+.DS_Store
+*.swp
+*~.nib
+# Thumbnails
+._*
+
+# Windows
+# Windows image file caches
+Thumbs.db
+# Folder config file
+Desktop.ini
+
+#########################
+# miscellaneous
+#########################
+
+.mailmap
+*.app
+*.dSYM
+ofxOpenDHT_example/bin/.tmp
+bin/.tmp
+obj/
+**/build-ofxOpenDHT_example-Desktop-Debug
+**/build-ofxOpenDHT_example-Desktop-Release
