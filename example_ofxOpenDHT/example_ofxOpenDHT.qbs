@@ -24,7 +24,7 @@ Project{
         // additional flags for the project. the of module sets some
         // flags by default to add the core libraries, search paths...
         // this flags can be augmented through the following properties:
-        of.pkgConfigs: []       // list of additional system pkgs to include
+        of.pkgConfigs: ["/usr/local/lib/pkgconfig/opendht.pc"]       // list of additional system pkgs to include
         of.includePaths: []     // include search paths
         of.cFlags: []           // flags passed to the c compiler
         of.cxxFlags: []         // flags passed to the c++ compiler

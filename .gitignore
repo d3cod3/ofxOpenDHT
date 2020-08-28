@@ -29,6 +29,7 @@ Desktop.ini
 .mailmap
 *.app
 *.dSYM
+example_ofxOpenDHT/bin/*
 example_ofxOpenDHT/bin/.tmp
 bin/.tmp
 obj/
