@@ -1,11 +1,14 @@
 #pragma once
 
+#ifdef TARGET_OSX
 #define MSGPACK_DISABLE_LEGACY_NIL
+#endif
 
 #include <opendht.h>
 #include <opendht/log.h>
 #include <opendht/crypto.h>
 #include <opendht/network_utils.h>
+#include <opendht/node.h>
 #include <opendht/rng.h>
 
 extern "C" {
@@ -36,6 +39,7 @@ extern "C" {
 #include <string>
 #include <vector>
 #include <chrono>
+#include <set>
 #include <mutex>
 #include <condition_variable>
 #include <iostream>

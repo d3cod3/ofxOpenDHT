@@ -59,8 +59,16 @@ struct dht_params {
     bool public_stable {false};
 };
 
+struct snode_compare {
+    bool operator() (const std::shared_ptr<dht::Node>& lhs, const std::shared_ptr<dht::Node>& rhs) const{
+        return (lhs->id < rhs->id) || (lhs->id == rhs->id && lhs->getFamily() == AF_INET && rhs->getFamily() == AF_INET6);
+    }
+};
+
 static std::mt19937_64 rd {dht::crypto::random_device{}()};
 static std::uniform_int_distribution<dht::Value::Id> rand_id;
+
+using NodeSet = std::set<std::shared_ptr<dht::Node>, snode_compare>;
 
 class ofxOpenDHT {
 
@@ -71,14 +79,18 @@ public:
 
     void    setupDHTNode(std::string network="ofxOpenDHT",size_t port=4222,std::string bootstrapNode="bootstrap.jami.net");
     void    stopDHTNode();
+    void    scanNetworkNodes();
 
     dht::DhtRunner  dhtNode;
     dht_params      nodeParams;
 
 private:
 
+    void step(dht::DhtRunner& dht, std::atomic_uint& done, std::shared_ptr<NodeSet> all_nodes, dht::InfoHash cur_h, unsigned cur_depth);
     std::pair<dht::DhtRunner::Config, dht::DhtRunner::Context> getDhtConfig(dht_params& params);
     void print_node_info(const dht::NodeInfo& info);
     std::string printTime(const std::time_t& now);
+
+    std::condition_variable cv;
 
 };
