@@ -57,6 +57,14 @@ void ofxOpenDHT::setupDHTNode(std::string network,size_t port,std::string bootst
 }
 
 //--------------------------------------------------------------
+void ofxOpenDHT::stopDHTNode(){
+    if(dhtNode.isRunning()){
+        // stop the node
+        dhtNode.join();
+    }
+}
+
+//--------------------------------------------------------------
 std::pair<dht::DhtRunner::Config, dht::DhtRunner::Context> ofxOpenDHT::getDhtConfig(dht_params& params){
     if (not params.id.first and params.generate_identity) {
         auto node_ca = std::make_unique<dht::crypto::Identity>(dht::crypto::generateEcIdentity("DHT Node CA"));

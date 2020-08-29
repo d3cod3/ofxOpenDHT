@@ -70,6 +70,7 @@ public:
     ~ofxOpenDHT();
 
     void    setupDHTNode(std::string network="ofxOpenDHT",size_t port=4222,std::string bootstrapNode="bootstrap.jami.net");
+    void    stopDHTNode();
 
     dht::DhtRunner  dhtNode;
     dht_params      nodeParams;
