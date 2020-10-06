@@ -77,9 +77,12 @@ public:
     ofxOpenDHT();
     ~ofxOpenDHT();
 
-    void    setupDHTNode(std::string network="ofxOpenDHT",size_t port=4222,std::string bootstrapNode="bootstrap.jami.net");
-    void    stopDHTNode();
-    void    scanNetworkNodes();
+    void        setupDHTNode(std::string network="ofxOpenDHT",size_t port=4222,std::string bootstrapNode="bootstrap.jami.net");
+    void        stopDHTNode();
+    void        scanNetworkNodes();
+
+    void        print_node_info(const dht::NodeInfo& info);
+    std::string printTime(const std::time_t& now);
 
     dht::DhtRunner  dhtNode;
     dht_params      nodeParams;
@@ -88,8 +91,6 @@ private:
 
     void step(dht::DhtRunner& dht, std::atomic_uint& done, std::shared_ptr<NodeSet> all_nodes, dht::InfoHash cur_h, unsigned cur_depth);
     std::pair<dht::DhtRunner::Config, dht::DhtRunner::Context> getDhtConfig(dht_params& params);
-    void print_node_info(const dht::NodeInfo& info);
-    std::string printTime(const std::time_t& now);
 
     std::condition_variable cv;
 

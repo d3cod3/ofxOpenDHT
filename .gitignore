@@ -31,7 +31,11 @@ Desktop.ini
 *.dSYM
 example_ofxOpenDHT/bin/*
 example_ofxOpenDHT/bin/.tmp
+example_DistributedChatroom/bin/*
+example_DistributedChatroom/bin/.tmp
 bin/.tmp
 obj/
 **/build-example_ofxOpenDHT-Desktop-Debug
 **/build-example_ofxOpenDHT-Desktop-Release
+**/build-example_DistributedChatroom-Desktop-Debug/
+**/build-example_DistributedChatroom-Desktop-Release/
