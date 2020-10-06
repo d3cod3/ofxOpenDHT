@@ -17,7 +17,7 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::setupDHTNode(){
 
-    dht.setupDHTNode("ofxOpenDHT",4222,"bootstrap.jami.net:4222");
+    dht.setupDHTNode("ofxOpenDHT",4222,"bootstrap.jami.net");
 
     myid = dht.dhtNode.getId();
 
