@@ -7,8 +7,14 @@
 
 #include "ofxOpenDHT.h"
 
+
+#define DHT_NETWORK                         "ofxOpenDHT"
+#define DHT_PORT                            4222
+#define DHT_BOOTSTRAP_NODE                  "bootstrap.jami.net"
+
 #define RETINA_MIN_WIDTH                    2560
 #define RETINA_MIN_HEIGHT                   1600
+#define DEBUG_APP                           true
 
 class ofApp : public ofBaseApp{
 
@@ -33,21 +39,32 @@ public:
     void setupDHTNode();
 
 
+    std::vector<std::string> arguments;
+
     ofxImGui::Gui           gui;
     bool                    isRetina;
     float                   scaleFactor;
-
 
     ofxOpenDHT              dht;
 
     dht::InfoHash           room;
     std::future<size_t>     token;
-
     dht::InfoHash           myid;
 
-    std::string             chatContent;
+    std::map<std::string,std::string>   openChats;
+    std::map<std::string,std::string>   participants;
+
+    std::string             userID;
+    std::string             aka;
+
+    std::string             participantsList;
     std::string             message;
 
     bool                    init;
+    bool                    initModal;
+
+private:
+
+
 
 };
