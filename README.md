@@ -1,6 +1,6 @@
 # ofxOpenDHT
 
-Openframeworks addon for wrapping and include the [openDHT](https://github.com/savoirfairelinux/opendht) library, a C++14 distributed hash table implementation
+Openframeworks addon for wrapping and include the [openDHT](https://github.com/savoirfairelinux/opendht) library, a C++17 distributed hash table implementation
 
 ## Compile
 
@@ -8,7 +8,7 @@ Before using this addon, you'll need to install opendht dependencies and build t
 
 ## OpenDHT License
 
-Copyright (C) 2014-2020 Savoir-faire Linux Inc.
+Copyright (C) 2014-2024 Savoir-faire Linux Inc.
 
 OpenDHT is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 
