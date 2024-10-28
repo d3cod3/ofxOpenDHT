@@ -25,7 +25,6 @@ sudo apt install build-essential git cmake libncurses5-dev libreadline-dev nettl
 
 ########################################################################
 # clone the repo
-cd lib
 git clone https://github.com/savoirfairelinux/opendht.git
 
 ########################################################################
