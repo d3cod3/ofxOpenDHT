@@ -19,18 +19,29 @@ void ofApp::setupDHTNode(){
 
     dht.setupDHTNode(DHT_NETWORK,DHT_PORT,DHT_BOOTSTRAP_NODE);
 
-    //dht.scanNetworkNodes();
-
     myid = dht.dhtNode.getId();
 
     userID = myid.toString();
     aka = "";
 
-    room = dht::InfoHash::get("ofxOpenDHT chatroom");
+    chatname = "ofxOpenDHT chatroom";
 
-    openChats["ofxOpenDHT chatroom"] = "Welcome message\n\n\n";
+    room = dht::InfoHash::get(chatname);
 
-    if(DEBUG_APP) std::cout << "Joining h(ofxOpenDHT chatroom) = " << room << std::endl;
+    welcome_message = "\n\n";
+    welcome_message +=" ______________\n";
+    welcome_message +="< DHT CHATROOM >\n";
+    welcome_message +=" --------------\n";
+    welcome_message +="        \\   ^__^\n";
+    welcome_message +="         \\  (OO)\\_______\n";
+    welcome_message +="            (__)\\       )\\/\\\n";
+    welcome_message +="                ||----w |\n";
+    welcome_message +="                ||     ||\n\n\n";
+
+    openChats[chatname] = welcome_message;
+
+
+    if(DEBUG_APP) std::cout << "Joining h(" << chatname << ") = " << room << std::endl;
 
     // node running thread
     token = dht.dhtNode.listen<dht::ImMessage>(room, [&](dht::ImMessage&& msg) {
@@ -57,8 +68,8 @@ void ofApp::setupDHTNode(){
                     openChats[msg.from.toString()] += "\n";
                 }else{
                     // update chatroom messages
-                    openChats["ofxOpenDHT chatroom"] += "["+ofGetTimestampString("%H-%M-%S")+"] " + msg.msg;
-                    openChats["ofxOpenDHT chatroom"] += "\n";
+                    openChats[chatname] += "["+ofGetTimestampString("%H-%M-%S")+"] " + msg.msg;
+                    openChats[chatname] += "\n";
                 }
 
             }
@@ -83,13 +94,15 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+
+    // create gui
     this->gui.begin();
     {
 
         ImGui::SetNextWindowPos(ImVec2(0,0), ImGuiCond_Always);
         ImGui::SetNextWindowSize(ImVec2(ofGetWindowWidth()*scaleFactor,ofGetWindowHeight()*scaleFactor), ImGuiCond_Always);
 
-        if (ImGui::Begin("ofxOpenDHT Chatroom"))
+        if (ImGui::Begin(chatname.c_str()))
         {
 
             // startup modal for choosing session username
@@ -108,7 +121,7 @@ void ofApp::draw(){
                 ImGui::Spacing();
                 ImGui::Spacing();
                 if (ImGui::Button("Apply")){
-                    if(aka != ""){
+                    if(aka != "" && checkAKAIsValid(aka)){ // if aka is not empty and is not already taken
                        participants[userID] = aka;
                     }else{
                        participants[userID] = userID;
@@ -158,7 +171,7 @@ void ofApp::draw(){
 
                 for(std::map<std::string,std::string>::iterator it = openChats.begin(); it != openChats.end(); it++ ){
                     string tabName = "";
-                    if(it->first == "ofxOpenDHT chatroom"){
+                    if(it->first == chatname.c_str()){
                         tabName = it->first;
                     }else{
                         tabName = participants[it->first];
@@ -181,7 +194,7 @@ void ofApp::draw(){
                         if(ImGui::Button("SEND")){
                             auto now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 
-                            if(it->first == "ofxOpenDHT chatroom"){
+                            if(it->first == chatname.c_str()){
                                 it->second += "["+ofGetTimestampString("%H-%M-%S")+"] <" + aka + "> " +message;
                                 it->second += "\n";
 
@@ -210,6 +223,8 @@ void ofApp::draw(){
     }
     this->gui.end();
 
+
+    // draw gui
     this->gui.draw();
 }
 
@@ -217,6 +232,16 @@ void ofApp::draw(){
 void ofApp::exit(){
     dht.dhtNode.cancelListen(room, std::move(token));
     dht.stopDHTNode();
+}
+
+//--------------------------------------------------------------
+bool ofApp::checkAKAIsValid(std::string aka){
+     for(std::map<std::string,std::string>::iterator it = participants.begin(); it != participants.end(); it++ ){
+         if(it->second == aka){
+             return false;
+         }
+     }
+     return true;
 }
 
 //--------------------------------------------------------------

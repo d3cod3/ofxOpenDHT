@@ -21,7 +21,7 @@ fi
 
 ########################################################################
 # Install OpenDHT dependencies
-sudo apt install build-essential git cmake libncurses5-dev libreadline-dev nettle-dev libgnutls28-dev libargon2-0-dev libmsgpack-dev libssl-dev libfmt-dev libjsoncpp-dev libhttp-parser-dev libasio-dev libcppunit-dev
+sudo apt install build-essential git cmake libncurses5-dev libreadline-dev nettle-dev libgnutls28-dev libargon2-0-dev libmsgpack-dev libssl-dev libfmt-dev libjsoncpp-dev libhttp-parser-dev libasio-dev libcppunit-dev -y
 
 ########################################################################
 # clone the repo

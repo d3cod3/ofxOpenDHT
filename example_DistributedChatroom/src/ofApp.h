@@ -37,6 +37,7 @@ public:
     void dragEvent(ofDragInfo dragInfo);
 
     void setupDHTNode();
+    bool checkAKAIsValid(std::string aka);
 
 
     std::vector<std::string> arguments;
@@ -49,6 +50,7 @@ public:
     dht::InfoHash           room;
     std::future<size_t>     token;
     dht::InfoHash           myid;
+    std::string             chatname;
 
     std::map<std::string,std::string>   openChats;
     std::map<std::string,std::string>   participants;
@@ -58,6 +60,7 @@ public:
 
     std::string             participantsList;
     std::string             message;
+    std::string             welcome_message;
 
     bool                    init;
     bool                    initModal;
