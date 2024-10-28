@@ -5,10 +5,9 @@ void ofApp::setup(){
 
     setupDHTNode();
 
-    isRetina        = false;
     scaleFactor     = 1.0f;
 
-    gui.setup();
+    gui.setup(nullptr, false);
 
     init        = false;
     initModal   = false;
@@ -20,6 +19,8 @@ void ofApp::setupDHTNode(){
 
     dht.setupDHTNode(DHT_NETWORK,DHT_PORT,DHT_BOOTSTRAP_NODE);
 
+    //dht.scanNetworkNodes();
+
     myid = dht.dhtNode.getId();
 
     userID = myid.toString();
@@ -27,10 +28,11 @@ void ofApp::setupDHTNode(){
 
     room = dht::InfoHash::get("ofxOpenDHT chatroom");
 
-    openChats["ofxOpenDHT chatroom"] = "";
+    openChats["ofxOpenDHT chatroom"] = "Welcome message\n\n\n";
 
     if(DEBUG_APP) std::cout << "Joining h(ofxOpenDHT chatroom) = " << room << std::endl;
 
+    // node running thread
     token = dht.dhtNode.listen<dht::ImMessage>(room, [&](dht::ImMessage&& msg) {
             if (msg.from != myid){
 
@@ -76,13 +78,6 @@ void ofApp::update(){
 
     if(!init){
         init = true;
-        // RETINA FIX
-        if(ofGetScreenWidth() >= RETINA_MIN_WIDTH && ofGetScreenHeight() >= RETINA_MIN_HEIGHT){
-            isRetina        = true;
-            scaleFactor     = 2.0f;
-            ofSetWindowShape(740*scaleFactor,640*scaleFactor);
-
-        }
     }
 }
 
@@ -106,6 +101,7 @@ void ofApp::draw(){
             bool open = true;
             ImGui::SetNextWindowPos(ImVec2(ofGetWindowWidth()/2 - 150*scaleFactor,ofGetWindowHeight()/2 - 50*scaleFactor), ImGuiCond_Always);
             ImGui::SetNextWindowSize(ImVec2(300*scaleFactor,100*scaleFactor), ImGuiCond_Always);
+
             if (ImGui::BeginPopupModal("Set user AKA for this chatroom session", &open)){
                 ImGui::InputText("###aka",&aka);
                 ImGui::Spacing();
@@ -142,7 +138,7 @@ void ofApp::draw(){
                         ImGui::Separator();
                         ImGui::Spacing();
                         if(ImGui::Button("New Private Chat",ImVec2(200*scaleFactor,26*scaleFactor))){
-                            openChats[it->first] == "";
+                            openChats[it->first] = "";
                             ImGui::CloseCurrentPopup();
                         }
                     }
@@ -213,6 +209,8 @@ void ofApp::draw(){
         ImGui::End();
     }
     this->gui.end();
+
+    this->gui.draw();
 }
 
 //--------------------------------------------------------------

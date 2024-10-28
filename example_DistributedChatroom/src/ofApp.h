@@ -10,10 +10,10 @@
 
 #define DHT_NETWORK                         "ofxOpenDHT"
 #define DHT_PORT                            4222
+
+// using https://jami.net/ as backend bootstrap ( free/libre, end-to-end encrypted, and private communication software )
 #define DHT_BOOTSTRAP_NODE                  "bootstrap.jami.net"
 
-#define RETINA_MIN_WIDTH                    2560
-#define RETINA_MIN_HEIGHT                   1600
 #define DEBUG_APP                           true
 
 class ofApp : public ofBaseApp{
@@ -42,7 +42,6 @@ public:
     std::vector<std::string> arguments;
 
     ofxImGui::Gui           gui;
-    bool                    isRetina;
     float                   scaleFactor;
 
     ofxOpenDHT              dht;

@@ -12,8 +12,6 @@ Project{
         name: { return FileInfo.baseName(sourceDirectory) }
 
         files: [
-            'src/imgui_stdlib.cpp',
-            'src/imgui_stdlib.h',
             'src/main.cpp',
             'src/ofApp.cpp',
             'src/ofApp.h',
@@ -27,7 +25,7 @@ Project{
         // additional flags for the project. the of module sets some
         // flags by default to add the core libraries, search paths...
         // this flags can be augmented through the following properties:
-        of.pkgConfigs: ["/usr/local/lib/pkgconfig/opendht.pc"]       // list of additional system pkgs to include
+        of.pkgConfigs: ["/usr/local/lib/pkgconfig/opendht.pc"]       // list of additional system pkgs to include // "/usr/local/lib/pkgconfig/opendht.pc"
         of.includePaths: []     // include search paths
         of.cFlags: []           // flags passed to the c compiler
         of.cxxFlags: []         // flags passed to the c++ compiler

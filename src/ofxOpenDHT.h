@@ -65,7 +65,7 @@ struct snode_compare {
     }
 };
 
-static std::mt19937_64 rd {dht::crypto::random_device{}()};
+static std::mt19937_64 rd {dht::crypto::getSeededRandomEngine<std::mt19937_64>()};
 static std::uniform_int_distribution<dht::Value::Id> rand_id;
 
 using NodeSet = std::set<std::shared_ptr<dht::Node>, snode_compare>;

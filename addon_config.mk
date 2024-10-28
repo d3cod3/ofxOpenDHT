@@ -61,10 +61,10 @@ common:
 	# ADDON_LIBS_EXCLUDE =
 
 linux64:
-        ADDON_LDFLAGS += -lopendht -lgnutls -lnettle
+        ADDON_LDFLAGS += -lopendht -lgnutls -lnettle -lfmt
 
 linux:
-        ADDON_LDFLAGS += -lopendht -lgnutls -lnettle
+        ADDON_LDFLAGS += -lopendht -lgnutls -lnettle -lfmt
 
 osx:
-        ADDON_LDFLAGS += -lopendht -lgnutls -lnettle
+        ADDON_LDFLAGS += -lopendht -lgnutls -lnettle -lfmt
