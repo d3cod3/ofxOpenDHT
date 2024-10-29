@@ -37,5 +37,8 @@ sudo make install
 
 ########################################################################
 # copy lib pkgconfig reference
+if [ ! -d /usr/local/lib/pkgconfig ]; then
+	sudo mkdir /usr/local/lib/pkgconfig
+fi
 sudo cp /usr/lib/x86_64-linux-gnu/pkgconfig/opendht.pc /usr/local/lib/pkgconfig/opendht.pc
 
