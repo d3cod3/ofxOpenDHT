@@ -160,8 +160,11 @@ std::pair<dht::DhtRunner::Config, dht::DhtRunner::Context> ofxOpenDHT::getDhtCon
             context.logger = dht::log::getStdLogger();
     }
     if (context.logger) {
-        context.statusChangedCallback = [logger = *context.logger](dht::NodeStatus status4, dht::NodeStatus status6) {
-            logger.warn("Connectivity changed: IPv4: %s, IPv6: %s", dht::statusToStr(status4), dht::statusToStr(status6));
+        context.statusChangedCallback = [logger = context.logger](dht::NodeStatus status4, dht::NodeStatus status6) {
+            logger->w("Connectivity changed: IPv4: %s, IPv6: %s", dht::statusToStr(status4), dht::statusToStr(status6));
+        };
+        context.publicAddressChangedCb = [logger = context.logger](std::vector<dht::SockAddr> addrs) {
+            logger->warn("Public address changed: {}", addrs);
         };
     }
     return {std::move(config), std::move(context)};

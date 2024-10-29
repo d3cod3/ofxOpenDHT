@@ -11,7 +11,6 @@
 #include <opendht/node.h>
 #include <opendht/rng.h>
 
-
 extern "C" {
 #include <gnutls/gnutls.h>
 }
@@ -23,13 +22,16 @@ extern "C" {
 #include <opendht/dht_proxy_server.h>
 #endif
 
-#ifndef WIN32_NATIVE
+#include <fmt/ranges.h>
+
+#ifndef _MSC_VER
 #include <getopt.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #else
 #define SIGHUP 0
 #include "wingetopt.h"
+#include <io.h>
 #endif
 
 #include <sys/types.h>
@@ -40,7 +42,6 @@ extern "C" {
 #include <string>
 #include <vector>
 #include <chrono>
-#include <set>
 #include <mutex>
 #include <condition_variable>
 #include <iostream>
