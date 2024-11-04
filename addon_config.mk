@@ -68,3 +68,4 @@ linux:
 
 osx:
         ADDON_LDFLAGS += -lopendht -lgnutls -lnettle -lfmt
+        ADDON_CFLAGS += -DMSGPACK_NO_BOOST
