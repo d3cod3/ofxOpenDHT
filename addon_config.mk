@@ -16,7 +16,7 @@
 
 meta:
 	ADDON_NAME = ofxOpenDHT
-	ADDON_DESCRIPTION = Addon for wrapping and include the openDHT (https://github.com/savoirfairelinux/opendht) library, a C++14 distributed hash table implementation
+        ADDON_DESCRIPTION = Addon for wrapping and include the openDHT (https://github.com/savoirfairelinux/opendht) library, a C++17 distributed hash table implementation
 	ADDON_AUTHOR = Emanuele Mazza aka n3m3da aka d3cod3
 	ADDON_TAGS = "dht" "p2p" "serverless" "distributed network"
 	ADDON_URL = https://github.com/d3cod3/ofxOpenDHT
