@@ -6,6 +6,17 @@ Openframeworks addon for wrapping and include the [openDHT](https://github.com/s
 
 Before using this addon, you'll need to install opendht dependencies and build the library. Just follow [this build instructions](https://github.com/savoirfairelinux/opendht/wiki/Build-the-library), when finished you'll be ready to use the ofxOpenDHT addon.
 
+### macOS ISSUES
+
+In some macOS systems, the install of opendht library will fail due to a security feature that block coping files from user space to system folders.
+In order to solve the issue just clone the opendht repo in a folder outside the user space and make/make install from there.
+
+To check if you are working from user space, just try this in a terminal, from the folder where you cloned opendht for compiling ( thanks @daandelange ):
+
+```bash
+echo `pwd` | grep -Eq "^`realpath ~/../`" && echo "You are running from user space, newer versions of macos (±10.15+) will probably fail to install (below). Please copy the compilation files out of your user folder."
+```
+
 ## OpenDHT License
 
 Copyright (C) 2014-2024 Savoir-faire Linux Inc.
