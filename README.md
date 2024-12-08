@@ -17,6 +17,11 @@ To check if you are working from user space, just try this in a terminal, from t
 echo `pwd` | grep -Eq "^`realpath ~/../`" && echo "You are running from user space, newer versions of macos (±10.15+) will probably fail to install (below). Please copy the compilation files out of your user folder."
 ```
 
+And for compiling with XCode, this is needed:
+
+```Project C Flags: -DMSGPACK_NO_BOOST```
+```Library Search Paths: /usr/local/lib/``` (if using used default install location, otherwise ```/usr/lib```)
+
 ## OpenDHT License
 
 Copyright (C) 2014-2024 Savoir-faire Linux Inc.
